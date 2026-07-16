@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0b0d;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: #f3ecdd;
+  font-feature-settings: "ss01", "cv01";
+}
+
+/* Selection */
+::selection {
+  background: #c9a24b;
+  color: #0b0b0d;
+}
+
+/* Slim custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0b0b0d; }
+::-webkit-scrollbar-thumb {
+  background: #2a2a30;
+  border-radius: 999px;
+  border: 2px solid #0b0b0d;
+}
+::-webkit-scrollbar-thumb:hover { background: #a9863a; }
+
+@layer components {
+  /* Gold sheen text (headline accents) */
+  .text-gold-sheen {
+    background: linear-gradient(120deg, #a9863a 0%, #e6c77e 45%, #c9a24b 60%, #a9863a 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Section shell with generous rhythm */
+  .section {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+  }
+
+  /* Thin gold rule / eyebrow label */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.28em] text-gold;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-gold/70;
+  }
+
+  /* Primary CTA button */
+  .btn-gold {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5
+           text-sm font-semibold uppercase tracking-wider text-base-900 transition-all duration-300
+           hover:bg-gold-bright hover:shadow-[0_0_40px_-8px_rgba(230,199,126,0.6)];
+  }
+
+  /* Ghost / secondary button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-champagne/20 px-7 py-3.5
+           text-sm font-semibold uppercase tracking-wider text-champagne transition-all duration-300
+           hover:border-gold hover:text-gold;
+  }
+
+  /* Card surface */
+  .card {
+    @apply rounded-2xl border border-white/[0.06] bg-base-800/60 backdrop-blur-sm transition-all duration-300;
+  }
+  .card:hover {
+    @apply border-gold/40 bg-base-700/60;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent;
+  }
+}
+
+/* Subtle animated grain/vignette layer helper */
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(11,11,13,0.55) 100%);
+}

@@ -1,0 +1,33 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+/build
+
+# production
+/dist
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+next-env.d.ts
+
+# env / secrets — NEVER commit
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# --- project-specific: keep the repo to just the website code ---
+# original brand source files (logos, videos, raw photos, docx) — not needed to run the site
+/brand-source/
+# local preview snapshots (not part of the deployed site)
+/PREVIEW-*.html
+# internal setup notes (personal, not code)
+/SETUP-CHECKLIST.md
