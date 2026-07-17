@@ -244,10 +244,12 @@ export const industries: Industry[] = [
 
 // --- GEOGRAPHY -------------------------------------------------------------
 export const geography = [
-  { region: "Türkiye", role: "Head base — logistics & coordination" },
-  { region: "China", role: "Manufacturing & large stock" },
-  { region: "Europe", role: "OEM & quality suppliers" },
-  { region: "Azerbaijan", role: "Main served market + regional projects" }
+  { region: "Türkiye", role: "Head base — logistics & coordination", x: 556, y: 196, hub: true },
+  { region: "China", role: "Manufacturing & large stock", x: 715, y: 205, hub: false },
+  { region: "Europe", role: "OEM & quality suppliers", x: 505, y: 158, hub: false },
+  { region: "Azerbaijan", role: "Main served market + regional projects", x: 590, y: 193, hub: false },
+  { region: "USA", role: "Sourcing & regional projects", x: 215, y: 182, hub: false },
+  { region: "Africa", role: "Mining markets & regional projects", x: 528, y: 315, hub: false }
 ] as const;
 
 // --- ABOUT / PROCESS / VALUES ---------------------------------------------

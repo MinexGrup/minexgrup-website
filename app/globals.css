@@ -97,3 +97,22 @@ body {
   pointer-events: none;
   background: radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(11,11,13,0.55) 100%);
 }
+
+/* Supply map animations */
+.map-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mapPulse 2.6s ease-out infinite;
+}
+@keyframes mapPulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  70% { transform: scale(3); opacity: 0; }
+  100% { opacity: 0; }
+}
+.map-flow {
+  stroke-dasharray: 4 8;
+  animation: mapFlow 3s linear infinite;
+}
+@keyframes mapFlow {
+  to { stroke-dashoffset: -24; }
+}

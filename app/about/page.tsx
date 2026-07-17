@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import Placeholder from "../components/Placeholder";
 import { site, geography, processSteps, valueProps, stats } from "../lib/site";
+import SupplyMap from "../components/SupplyMap";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -106,15 +107,18 @@ export default function AboutPage() {
               <div>
                 <p className="eyebrow">Geography &amp; trust</p>
                 <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tightest text-champagne md:text-4xl">
-                  One network, three continents
+                  One network, across the globe
                 </h2>
               </div>
               <p className="max-w-md text-sm leading-relaxed text-champagne/60">
-                Head base in Türkiye for logistics and coordination, manufacturing and stock in China,
-                OEM and quality suppliers in Europe — serving Azerbaijan and regional projects.
+                Head base in Türkiye, manufacturing and stock in China, and OEM suppliers in Europe —
+                with sourcing and projects reaching the USA and Africa, and Azerbaijan as a core market.
               </p>
             </div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 overflow-hidden rounded-2xl border border-white/[0.06] bg-base-900/60 p-4 md:p-6">
+              <SupplyMap className="w-full" />
+            </div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {geography.map((g) => (
                 <div key={g.region} className="rounded-xl border border-white/[0.06] bg-base-900 p-6">
                   <div className="flex items-center gap-3">
