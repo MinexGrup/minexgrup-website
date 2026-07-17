@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import Media from "../components/Media";
-import { productCategories, brands, brandsComingSoon } from "../lib/site";
+import { productCategories, brands, brandsMinor } from "../lib/site";
 
 export const metadata: Metadata = { title: "Products" };
 
@@ -54,12 +54,12 @@ export default function ProductsPage() {
 
         <Reveal>
           <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-2xl border border-white/[0.06] bg-base-800/50 p-8">
-            <span className="text-xs uppercase tracking-[0.22em] text-champagne/40">Brands</span>
+            <span className="text-xs uppercase tracking-[0.22em] text-champagne/40">Major brands</span>
             {brands.map((b) => (
               <span key={b} className="font-display text-xl font-semibold uppercase tracking-tight text-champagne/85">{b}</span>
             ))}
-            <span className="ml-auto text-xs uppercase tracking-[0.22em] text-gold/60">Coming soon</span>
-            {brandsComingSoon.map((b) => (
+            <span className="ml-auto text-xs uppercase tracking-[0.22em] text-gold/60">Minor brands</span>
+            {brandsMinor.map((b) => (
               <span key={b} className="text-sm text-champagne/40">{b}</span>
             ))}
           </div>

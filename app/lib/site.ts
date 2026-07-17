@@ -162,7 +162,7 @@ export const productCategories: ProductCategory[] = [
 ];
 
 export const brands = ["Caterpillar", "Cummins", "Komatsu"] as const;
-export const brandsComingSoon = ["Atlas Copco", "Hitachi", "Liebherr"] as const;
+export const brandsMinor = ["Hitachi", "Liebherr", "Atlas Copco"] as const;
 
 // --- INDUSTRIES ------------------------------------------------------------
 export type Industry = {

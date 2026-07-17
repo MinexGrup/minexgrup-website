@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { productCategories, brands, brandsComingSoon } from "../lib/site";
+import { productCategories, brands, brandsMinor } from "../lib/site";
 import Reveal from "./Reveal";
 
 export default function ProductsPreview() {
@@ -52,7 +52,7 @@ export default function ProductsPreview() {
       <Reveal>
         <div className="mt-16 flex flex-col items-center gap-6 rounded-2xl border border-white/[0.06] bg-base-800/50 p-8 md:flex-row md:justify-between">
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            <span className="text-xs uppercase tracking-[0.22em] text-champagne/40">Brands</span>
+            <span className="text-xs uppercase tracking-[0.22em] text-champagne/40">Major brands</span>
             {brands.map((b) => (
               <span key={b} className="font-display text-xl font-semibold uppercase tracking-tight text-champagne/85">
                 {b}
@@ -60,8 +60,8 @@ export default function ProductsPreview() {
             ))}
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span className="text-xs uppercase tracking-[0.22em] text-gold/60">Coming soon</span>
-            {brandsComingSoon.map((b) => (
+            <span className="text-xs uppercase tracking-[0.22em] text-gold/60">Minor brands</span>
+            {brandsMinor.map((b) => (
               <span key={b} className="text-sm text-champagne/40">{b}</span>
             ))}
           </div>
