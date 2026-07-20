@@ -244,12 +244,12 @@ export const industries: Industry[] = [
 
 // --- GEOGRAPHY -------------------------------------------------------------
 export const geography = [
-  { region: "Türkiye", role: "Head base — logistics & coordination", x: 556, y: 196, hub: true },
-  { region: "China", role: "Manufacturing & large stock", x: 715, y: 205, hub: false },
-  { region: "Europe", role: "OEM & quality suppliers", x: 505, y: 158, hub: false },
-  { region: "Azerbaijan", role: "Main served market + regional projects", x: 590, y: 193, hub: false },
-  { region: "USA", role: "Sourcing & regional projects", x: 215, y: 182, hub: false },
-  { region: "Africa", role: "Mining markets & regional projects", x: 528, y: 315, hub: false }
+  { region: "Türkiye", role: "Head base — logistics & coordination", x: 597, y: 142, hub: true, dx: 0, dy: -16, anchor: "middle" },
+  { region: "China", role: "Manufacturing & large stock", x: 786, y: 153, hub: false, dx: 0, dy: 22, anchor: "middle" },
+  { region: "Europe", role: "OEM & quality suppliers", x: 525, y: 111, hub: false, dx: -12, dy: -8, anchor: "end" },
+  { region: "Azerbaijan", role: "Main served market + regional projects", x: 633, y: 138, hub: false, dx: 12, dy: 20, anchor: "start" },
+  { region: "USA", role: "Sourcing & regional projects", x: 228, y: 142, hub: false, dx: 0, dy: 24, anchor: "middle" },
+  { region: "Africa", role: "Mining markets & regional projects", x: 556, y: 233, hub: false, dx: 0, dy: 26, anchor: "middle" }
 ] as const;
 
 // --- ABOUT / PROCESS / VALUES ---------------------------------------------
