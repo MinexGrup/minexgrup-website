@@ -1,27 +1,20 @@
 import type { Part } from "./parts";
 
-// ---------------------------------------------------------------------------
-// Loads the public Parts Catalog from Airtable ("История цен" / Price History).
-// - Fetches all rows (paginated), de-dupes by part number (keeps the most
-//   recent price), parses a clean description out of the comment, detects the
-//   make, and computes the public price = supplier cost × 1.08.
-// - The raw supplier cost is used only here (server side) and is NEVER included
-//   in the returned data, so it can never reach the browser.
-//
-// Requires env var AIRTABLE_API_KEY (a read-only Personal Access Token).
-// Base + table IDs are not secret and default below; override via env if moved.
-// ---------------------------------------------------------------------------
+// Loads the public Parts Catalog from Airtable ("История цен").
+// Fetches all rows, de-dupes by part number (keeps most recent), parses a clean
+// description from the comment, detects make, and computes public price = cost × 1.08.
+// The raw supplier cost is used only here (server side) and never returned.
 
 const BASE_ID = process.env.AIRTABLE_BASE_ID || "appTdwmhpK8DH8z4H";
 const TABLE_ID = process.env.AIRTABLE_TABLE_ID || "tbl5l7F9Xq9txhojr";
 const MARKUP = 1.08;
 
 const F = {
-  part: "fld6tqSILqUg4GQZy",     // номер детали
-  price: "fldCtkyECU8PEc9jG",    // закупочная цена USD (may actually be CNY — see currency)
-  comment: "fld8b66YICom14wqC",  // комментарий (contains description + internal file refs)
-  currency: "fldaSKZ8LWvKsSboZ", // валюта (USD | CNY)
-  date: "fldA1PDNZeodioPXG"      // дата получения цены
+  part: "fld6tqSILqUg4GQZy",
+  price: "fldCtkyECU8PEc9jG",
+  comment: "fld8b66YICom14wqC",
+  currency: "fldaSKZ8LWvKsSboZ",
+  date: "fldA1PDNZeodioPXG"
 };
 
 const MAKES: [string, string][] = [
@@ -49,20 +42,15 @@ function detectMake(comment: string, partNumber: string): string {
   return "Other";
 }
 
-type RawRecord = {
-  id: string;
-  createdTime: string;
-  fields: Record<string, unknown>;
-};
+type RawRecord = { id: string; createdTime: string; fields: Record<string, unknown> };
 
 export async function getCatalogParts(): Promise<Part[]> {
   const key = process.env.AIRTABLE_API_KEY;
-  if (!key) return [];
+  if (!key) { console.warn("CATALOG: AIRTABLE_API_KEY missing — returning empty"); return []; }
 
   const all: RawRecord[] = [];
   let offset: string | undefined;
   try {
-    // Airtable returns max 100 records/page.
     for (let i = 0; i < 400; i++) {
       const url = new URL(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`);
       url.searchParams.set("pageSize", "100");
@@ -71,21 +59,23 @@ export async function getCatalogParts(): Promise<Part[]> {
       if (offset) url.searchParams.set("offset", offset);
       const res = await fetch(url.toString(), {
         headers: { Authorization: `Bearer ${key}` },
-        next: { revalidate: 86400 }
+        cache: "force-cache"
       });
-      if (!res.ok) break;
+      if (!res.ok) {
+        console.error("CATALOG: Airtable responded", res.status, (await res.text()).slice(0, 300));
+        break;
+      }
       const json = (await res.json()) as { records: RawRecord[]; offset?: string };
       all.push(...json.records);
       offset = json.offset;
       if (!offset) break;
-      await new Promise((r) => setTimeout(r, 220)); // stay under Airtable's 5 req/s limit
+      await new Promise((r) => setTimeout(r, 210));
     }
-  } catch {
+  } catch (e) {
+    console.error("CATALOG: fetch threw", e);
     return [];
   }
 
-  // De-dupe by part number, keep the most recent (by date, then createdTime),
-  // preferring a row that has a usable description.
   const byPart = new Map<string, RawRecord>();
   const dateOf = (r: RawRecord) => String((r.fields[F.date] as string) || r.createdTime || "");
   for (const r of all) {
@@ -107,12 +97,11 @@ export async function getCatalogParts(): Promise<Part[]> {
     const curObj = r.fields[F.currency] as { name?: string } | undefined;
     const currency = (curObj && curObj.name) || "USD";
     const name = parseName(comment, pn) || pn;
-    const price = typeof rawPrice === "number" && rawPrice > 0
-      ? Math.round(rawPrice * MARKUP * 100) / 100
-      : null;
+    const price = typeof rawPrice === "number" && rawPrice > 0 ? Math.round(rawPrice * MARKUP * 100) / 100 : null;
     parts.push({ id: r.id, partNumber: pn, name, make: detectMake(comment, pn), price, currency });
   }
 
   parts.sort((a, b) => a.make.localeCompare(b.make) || a.partNumber.localeCompare(b.partNumber));
+  console.log(`CATALOG: fetched ${all.length} rows -> ${parts.length} unique parts`);
   return parts;
 }

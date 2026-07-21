@@ -4,7 +4,8 @@ import CatalogClient from "./CatalogClient";
 import { getCatalogParts } from "../lib/airtable";
 
 export const metadata: Metadata = { title: "Parts Catalog" };
-export const revalidate = 86400; // refresh from Airtable once a day
+export const dynamic = "force-static"; // fetch at build time (no serverless timeout)
+export const revalidate = 86400;   // rebuild data daily
 
 export default async function CatalogPage() {
   const parts = await getCatalogParts();
