@@ -94,8 +94,11 @@ export async function getCatalogParts(): Promise<Part[]> {
     const pn = String(r.fields[F.part]).trim();
     const comment = String(r.fields[F.comment] || "");
     const rawPrice = r.fields[F.price] as number | undefined;
-    const curObj = r.fields[F.currency] as { name?: string } | undefined;
-    const currency = (curObj && curObj.name) || "USD";
+    // Airtable REST returns singleSelect as a plain string; the MCP/JSON form
+    // returns { name }. Handle both so CNY rows aren't mislabelled as USD.
+    const curRaw = r.fields[F.currency] as unknown;
+    const currency =
+      (typeof curRaw === "string" ? curRaw : (curRaw as { name?: string } | undefined)?.name) || "USD";
     const name = parseName(comment, pn) || pn;
     const price = typeof rawPrice === "number" && rawPrice > 0 ? Math.round(rawPrice * MARKUP * 100) / 100 : null;
     parts.push({ id: r.id, partNumber: pn, name, make: detectMake(comment, pn), price, currency });
