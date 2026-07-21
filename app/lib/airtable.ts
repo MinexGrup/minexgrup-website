@@ -78,6 +78,7 @@ export async function getCatalogParts(): Promise<Part[]> {
       all.push(...json.records);
       offset = json.offset;
       if (!offset) break;
+      await new Promise((r) => setTimeout(r, 220)); // stay under Airtable's 5 req/s limit
     }
   } catch {
     return [];
