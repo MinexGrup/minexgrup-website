@@ -17,11 +17,22 @@ const F = {
   date: "fldA1PDNZeodioPXG"
 };
 
-const MAKES: [string, string][] = [
-  ["komatsu", "Komatsu"], ["caterpillar", "Caterpillar"], ["cummins", "Cummins"],
-  ["hitachi", "Hitachi"], ["liebherr", "Liebherr"], ["atlas copco", "Atlas Copco"],
-  ["volvo", "Volvo"], ["doosan", "Doosan"], ["hyundai", "Hyundai"], ["cat", "Caterpillar"]
+const BRANDS: [RegExp, string][] = [
+  [/\b(komatsu|коматсу)\b/i, "Komatsu"],
+  [/\b(caterpillar|катерпиллер|катерпилар)\b/i, "Caterpillar"],
+  [/\b(cummins|камминз)\b/i, "Cummins"],
+  [/\b(hitachi|хитачи)\b/i, "Hitachi"],
+  [/\b(liebherr|либхер)\b/i, "Liebherr"],
+  [/\batlas\s*copco\b/i, "Atlas Copco"],
+  [/\b(volvo|вольво)\b/i, "Volvo"],
+  [/\b(doosan|дусан)\b/i, "Doosan"],
+  [/\b(hyundai|хендэ|хундай)\b/i, "Hyundai"]
 ];
+// Standalone CAT / САТ only — must not match Russian "Каток" (roller).
+const CAT_TOKEN = /(^|[\s(])(CAT|САТ)([\s).,]|$)/;
+const CUMMINS_SER = /\b(QS[KXTBCLM]|KTTA|KTA|NTA|NT855|N14|IS[XMLB])\s?\d*/i;
+const CAT_ENGINE = /\b(ACERT|C13|C15|C18|C27|C32|C175)\b/;
+const KOMATSU_PFX = /^(ND|DM|DK|SAA|SDA|RM|EA|EMP|KM)\b/i;
 
 function parseName(comment: string, partNumber: string): string {
   if (!comment) return "";
@@ -30,15 +41,21 @@ function parseName(comment: string, partNumber: string): string {
   d = d.replace(/файл\s*:.*/gi, "");
   d = d.replace(new RegExp(partNumber.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), "");
   d = d.replace(/\b[0-9][0-9A-Za-z]{1,}-[0-9A-Za-z-]{2,}\b/g, "");
-  for (const [k] of MAKES) d = d.replace(new RegExp("\\b" + k + "\\b", "gi"), "");
+  for (const [re] of BRANDS) d = d.replace(new RegExp(re.source, "gi"), "");
   d = d.replace(/[⚠️✅🔴]/g, "").replace(/\s*[;:]\s*/g, " ").replace(/\s{2,}/g, " ").replace(/^\s*[-–]\s*/, "").trim();
   return d;
 }
 
 function detectMake(comment: string, partNumber: string): string {
-  const c = (comment || "").toLowerCase();
-  for (const [k, name] of MAKES) if (new RegExp("\\b" + k + "\\b").test(c)) return name;
-  if (/-/.test(partNumber) && /\d/.test(partNumber)) return "Komatsu";
+  const text = `${comment || ""} ${partNumber || ""}`;
+  for (const [re, name] of BRANDS) if (re.test(text)) return name;
+  if (CAT_TOKEN.test(comment || "")) return "Caterpillar";
+  if (CUMMINS_SER.test(text)) return "Cummins";
+  if (CAT_ENGINE.test(text)) return "Caterpillar";
+  if (/^\d{7}$/.test(partNumber)) return "Caterpillar";
+  if (/-/.test(partNumber) && (partNumber.match(/\d/g) || []).length >= 4
+      && !/\s/.test(partNumber) && !/[a-z]{3,}/.test(partNumber)) return "Komatsu";
+  if (KOMATSU_PFX.test(partNumber)) return "Komatsu";
   return "Other";
 }
 
