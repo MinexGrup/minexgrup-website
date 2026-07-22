@@ -30,7 +30,8 @@ const BRANDS: [RegExp, string][] = [
 ];
 // Standalone CAT / САТ only — must not match Russian "Каток" (roller).
 const CAT_TOKEN = /(^|[\s(])(CAT|САТ)([\s).,]|$)/;
-const CUMMINS_SER = /\b(QS[KXTBCLM]|KTTA|KTA|NTA|NT855|N14|IS[XMLB])\s?\d*/i;
+const CUMMINS_SER = /\b(QS[KXTBCLM]|QST|KTTA|KTA|NTA|NT855|N14|IS[XMLB])\s?\d*/i;
+const CUMMINS_CYR = /КТТА|камминз/i; // Cyrillic Cummins mentions
 const CAT_ENGINE = /\b(ACERT|C13|C15|C18|C27|C32|C175)\b/;
 const KOMATSU_PFX = /^(ND|DM|DK|SAA|SDA|RM|EA|EMP|KM)\b/i;
 
@@ -50,7 +51,7 @@ function detectMake(comment: string, partNumber: string): string {
   const text = `${comment || ""} ${partNumber || ""}`;
   for (const [re, name] of BRANDS) if (re.test(text)) return name;
   if (CAT_TOKEN.test(comment || "")) return "Caterpillar";
-  if (CUMMINS_SER.test(text)) return "Cummins";
+  if (CUMMINS_SER.test(text) || CUMMINS_CYR.test(text)) return "Cummins";
   if (CAT_ENGINE.test(text)) return "Caterpillar";
   if (/^\d{7}$/.test(partNumber)) return "Caterpillar";
   if (/-/.test(partNumber) && (partNumber.match(/\d/g) || []).length >= 4
