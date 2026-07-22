@@ -93,21 +93,23 @@ export async function getCatalogParts(): Promise<Part[]> {
     return [];
   }
 
-  const byPart = new Map<string, RawRecord>();
+  // De-dupe on part number + description so genuine variants that share a part
+  // number (e.g. QSK60 "2150" vs "250") are kept separate; only true re-quotes
+  // (same part, same description, different supplier/date) collapse to the latest.
+  const byKey = new Map<string, RawRecord>();
   const dateOf = (r: RawRecord) => String((r.fields[F.date] as string) || r.createdTime || "");
+  const descKey = (c: string) => (c.split("|")[0] || "").replace(/\s+/g, " ").trim().toLowerCase();
   for (const r of all) {
     const pn = String((r.fields[F.part] as string) || "").trim();
+    const comment = String(r.fields[F.comment] || "");
     if (!pn) continue;
-    const cur = byPart.get(pn);
-    if (!cur) { byPart.set(pn, r); continue; }
-    const better = dateOf(r) > dateOf(cur);
-    const rHasName = !!parseName(String(r.fields[F.comment] || ""), pn);
-    const curHasName = !!parseName(String(cur.fields[F.comment] || ""), pn);
-    if ((better && (rHasName || !curHasName)) || (rHasName && !curHasName)) byPart.set(pn, r);
+    const key = pn + "\u241f" + descKey(comment);
+    const cur = byKey.get(key);
+    if (!cur || dateOf(r) > dateOf(cur)) byKey.set(key, r);
   }
 
   const parts: Part[] = [];
-  for (const r of byPart.values()) {
+  for (const r of byKey.values()) {
     const pn = String(r.fields[F.part]).trim();
     const comment = String(r.fields[F.comment] || "");
     const rawPrice = r.fields[F.price] as number | undefined;

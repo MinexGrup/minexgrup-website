@@ -23,9 +23,11 @@ export const partMakes = [
   "Other"
 ] as const;
 
-export function formatPrice(price: number | null, currency: string): string {
+export function formatNumber(price: number | null): string {
   if (price === null || price === undefined) return "On request";
-  const n = price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  if (currency === "CNY") return `¥${n} CNY`;
-  return `$${n}`;
+  return price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+export function currencySymbol(currency: string): string {
+  return currency === "CNY" ? "¥" : "$";
 }

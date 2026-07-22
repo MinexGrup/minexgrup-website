@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { type Part, partMakes, formatPrice } from "../lib/parts";
+import { type Part, partMakes, formatNumber } from "../lib/parts";
 
 const PAGE = 25;
 
@@ -101,6 +101,7 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
               <th className="px-5 py-4 font-medium">Description</th>
               <th className="px-5 py-4 font-medium">Make</th>
               <th className="px-5 py-4 font-medium">Price</th>
+              <th className="px-5 py-4 font-medium">Currency</th>
               <th className="px-5 py-4"></th>
             </tr>
           </thead>
@@ -110,7 +111,8 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
                 <td className="px-5 py-4 font-mono text-champagne">{p.partNumber}</td>
                 <td className="px-5 py-4 text-champagne/75">{p.name}</td>
                 <td className="px-5 py-4"><span className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-champagne/70">{p.make}</span></td>
-                <td className="px-5 py-4 text-champagne">{p.price !== null ? formatPrice(p.price, p.currency) : <span className="text-gold">On request</span>}</td>
+                <td className="px-5 py-4 text-champagne whitespace-nowrap tabular-nums">{p.price !== null ? formatNumber(p.price) : <span className="text-gold">On request</span>}</td>
+                <td className="px-5 py-4">{p.price !== null ? <span className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-champagne/70">{p.currency}</span> : <span className="text-champagne/30">—</span>}</td>
                 <td className="px-5 py-4 text-right">
                   <Link href="/contact" className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-gold hover:text-gold-bright">Get Quote →</Link>
                 </td>
@@ -130,7 +132,7 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
             </div>
             <p className="mt-2 text-sm text-champagne/75">{p.name}</p>
             <div className="mt-3 flex items-center justify-between">
-              <span className="text-sm text-champagne">{p.price !== null ? formatPrice(p.price, p.currency) : <span className="text-gold">On request</span>}</span>
+              <span className="text-sm text-champagne tabular-nums">{p.price !== null ? <>{formatNumber(p.price)} <span className="text-champagne/50">{p.currency}</span></> : <span className="text-gold">On request</span>}</span>
               <Link href="/contact" className="text-xs font-semibold uppercase tracking-wider text-gold">Get Quote →</Link>
             </div>
           </div>
