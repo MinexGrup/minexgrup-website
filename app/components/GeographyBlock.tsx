@@ -14,7 +14,7 @@ export default function GeographyBlock() {
           <p className="mt-6 text-lg leading-relaxed text-champagne/70">
             Head base in Türkiye for logistics and coordination, manufacturing and large
             stock in China, and OEM suppliers in Europe — with sourcing and projects
-            reaching the USA and Africa, and Azerbaijan as a core served market.
+            reaching the USA, Africa, Australia, Chile and Singapore, and Azerbaijan as a core served market.
           </p>
         </div>
       </Reveal>

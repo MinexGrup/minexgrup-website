@@ -249,7 +249,10 @@ export const geography = [
   { region: "Europe", role: "OEM & quality suppliers", x: 525, y: 111, hub: false, dx: -12, dy: -8, anchor: "end" },
   { region: "Azerbaijan", role: "Main served market + regional projects", x: 633, y: 138, hub: false, dx: 12, dy: 20, anchor: "start" },
   { region: "USA", role: "Sourcing & regional projects", x: 228, y: 142, hub: false, dx: 0, dy: 24, anchor: "middle" },
-  { region: "Africa", role: "Mining markets & regional projects", x: 556, y: 233, hub: false, dx: 0, dy: 26, anchor: "middle" }
+  { region: "Africa", role: "Mining markets & regional projects", x: 556, y: 233, hub: false, dx: 0, dy: 26, anchor: "middle" },
+  { region: "Singapore", role: "Trade & logistics hub", x: 788, y: 246, hub: false, dx: 12, dy: 4, anchor: "start" },
+  { region: "Australia", role: "Mining markets & regional projects", x: 892, y: 330, hub: false, dx: 0, dy: 26, anchor: "middle" },
+  { region: "Chile", role: "Mining markets & regional projects", x: 304, y: 343, hub: false, dx: -12, dy: 4, anchor: "end" }
 ] as const;
 
 // --- ABOUT / PROCESS / VALUES ---------------------------------------------

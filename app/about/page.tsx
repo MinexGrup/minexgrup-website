@@ -112,7 +112,7 @@ export default function AboutPage() {
               </div>
               <p className="max-w-md text-sm leading-relaxed text-champagne/60">
                 Head base in Türkiye, manufacturing and stock in China, and OEM suppliers in Europe —
-                with sourcing and projects reaching the USA and Africa, and Azerbaijan as a core market.
+                with sourcing and projects reaching the USA, Africa, Australia, Chile and Singapore, and Azerbaijan as a core market.
               </p>
             </div>
             <div className="mt-10 overflow-hidden rounded-2xl border border-white/[0.06] bg-base-900/60 p-4 md:p-6">
