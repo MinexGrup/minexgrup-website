@@ -26,7 +26,9 @@ const BRANDS: [RegExp, string][] = [
   [/\batlas\s*copco\b/i, "Atlas Copco"],
   [/\b(volvo|вольво)\b/i, "Volvo"],
   [/\b(doosan|дусан)\b/i, "Doosan"],
-  [/\b(hyundai|хендэ|хундай)\b/i, "Hyundai"]
+  [/\b(hyundai|хендэ|хундай)\b/i, "Hyundai"],
+  [/\bjenbacher\b/i, "Jenbacher"],
+  [/\bmwm\b/i, "MWM"]
 ];
 // Standalone CAT / САТ only — must not match Russian "Каток" (roller).
 const CAT_TOKEN = /(^|[\s(])(CAT|САТ)([\s).,]|$)/;

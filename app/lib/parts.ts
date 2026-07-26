@@ -20,6 +20,8 @@ export const partMakes = [
   "Hitachi",
   "Liebherr",
   "Atlas Copco",
+  "Jenbacher",
+  "MWM",
   "Other"
 ] as const;
 
