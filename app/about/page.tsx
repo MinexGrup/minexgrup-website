@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
-import Placeholder from "../components/Placeholder";
+import Media from "../components/Media";
 import { site, geography, processSteps, valueProps, stats } from "../lib/site";
 import SupplyMap from "../components/SupplyMap";
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <Placeholder label="Minex Grup" ratio="4/3" />
+            <Media src="/industries/mining.jpg" label="Minex Grup" ratio="4/3" />
           </Reveal>
         </div>
 
