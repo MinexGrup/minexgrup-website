@@ -116,3 +116,29 @@ body {
 @keyframes mapFlow {
   to { stroke-dashoffset: -24; }
 }
+
+/* Header logo — sheen sweep (glint travels across the gold mark) */
+.logo-sheen {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+.logo-sheen__glint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask: url("/minex-mark.png") center / contain no-repeat;
+  mask: url("/minex-mark.png") center / contain no-repeat;
+  background: linear-gradient(100deg, transparent 38%, rgba(255,241,208,0.85) 50%, transparent 62%);
+  background-size: 250% 100%;
+  background-position: 165% 0;
+  animation: logoSheen 6s ease-in-out infinite;
+}
+@keyframes logoSheen {
+  0% { background-position: 165% 0; }
+  16% { background-position: -65% 0; }
+  100% { background-position: -65% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-sheen__glint { animation: none; opacity: 0; }
+}
