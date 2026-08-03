@@ -59,7 +59,7 @@ const CORE = `<style>
   .outro.show{opacity:1;transform:none}
   .outro h2{font-family:'Big Shoulders Display';font-weight:800;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;line-height:1}
   .outro p{color:var(--dim);margin:12px 0 18px}
-  .btn{display:inline-block;background:var(--yellow);color:#0e0c08;border:0;cursor:pointer;font-weight:600;font-size:15px;padding:13px 24px;border-radius:4px;text-decoration:none}
+  .btn{display:inline-block;background:var(--yellow);color:#0c0b0a;border:0;cursor:pointer;font-weight:600;font-size:15px;padding:13px 24px;border-radius:4px;text-decoration:none}
   .btn:hover{background:var(--yellow-hi)}
 
   .hud{position:absolute;right:4vw;top:50%;transform:translateY(-50%);z-index:5;width:252px}
@@ -106,13 +106,13 @@ const CORE = `<style>
     <svg viewBox="0 0 1240 780" preserveAspectRatio="xMidYMid meet" aria-label="Excavator assembling from floating parts">
       <defs>
         <linearGradient id="yBody" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#baaa89"/><stop offset=".5" stop-color="#978259"/><stop offset="1" stop-color="#62553a"/>
+          <stop offset="0" stop-color="#a6a29d"/><stop offset=".5" stop-color="#7e7972"/><stop offset="1" stop-color="#524f4a"/>
         </linearGradient>
         <linearGradient id="yBody2" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#c9bda4"/><stop offset="1" stop-color="#796847"/>
+          <stop offset="0" stop-color="#bab7b3"/><stop offset="1" stop-color="#65615b"/>
         </linearGradient>
         <linearGradient id="yBoom" x1="0" y1="0" x2=".4" y2="1">
-          <stop offset="0" stop-color="#c3b59a"/><stop offset=".55" stop-color="#968158"/><stop offset="1" stop-color="#5a4e35"/>
+          <stop offset="0" stop-color="#b3afaa"/><stop offset=".55" stop-color="#7d7871"/><stop offset="1" stop-color="#4b4844"/>
         </linearGradient>
         <linearGradient id="stG" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#706b62"/><stop offset="1" stop-color="#292724"/>
@@ -144,7 +144,7 @@ const CORE = `<style>
           <stop offset=".62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#090908" stop-opacity=".85"/>
         </radialGradient>
         <radialGradient id="sheenG" cx=".5" cy=".5" r=".5">
-          <stop offset="0" stop-color="#84724e" stop-opacity=".22"/>
+          <stop offset="0" stop-color="#6e6a64" stop-opacity=".22"/>
           <stop offset=".5" stop-color="#67625a" stop-opacity=".12"/>
           <stop offset="1" stop-color="#141311" stop-opacity="0"/>
         </radialGradient>
@@ -210,13 +210,13 @@ const CORE = `<style>
         <g id="p-house">
           <rect x="706" y="548" width="108" height="18" rx="7" fill="#292724" stroke="#161513" stroke-width="3"/>
           <path d="M560 494 h496 a16 16 0 0 1 16 16 v36 a12 12 0 0 1 -12 12 h-486 l-30 -26 v-22 a16 16 0 0 1 16 -16 z"
-                fill="url(#yBody)" stroke="#4d422d" stroke-width="3"/>
-          <path d="M546 540 h522" stroke="#574b33" stroke-width="4" opacity=".7"/>
-          <rect x="588" y="512" width="30" height="10" rx="3" fill="#6a5b3e" opacity=".7"/>
-          <rect x="640" y="512" width="30" height="10" rx="3" fill="#6a5b3e" opacity=".7"/>
+                fill="url(#yBody)" stroke="#403e3a" stroke-width="3"/>
+          <path d="M546 540 h522" stroke="#484642" stroke-width="4" opacity=".7"/>
+          <rect x="588" y="512" width="30" height="10" rx="3" fill="#585550" opacity=".7"/>
+          <rect x="640" y="512" width="30" height="10" rx="3" fill="#585550" opacity=".7"/>
           <path d="M868 418 h150 a18 18 0 0 1 18 18 v58 h-186 v-58 a18 18 0 0 1 18 -18 z"
-                fill="url(#yBody2)" stroke="#4d422d" stroke-width="3"/>
-          <g stroke="#574b33" stroke-width="3.4" opacity=".85">
+                fill="url(#yBody2)" stroke="#403e3a" stroke-width="3"/>
+          <g stroke="#484642" stroke-width="3.4" opacity=".85">
             <line x1="890" y1="436" x2="890" y2="478"/><line x1="908" y1="436" x2="908" y2="478"/>
             <line x1="926" y1="436" x2="926" y2="478"/><line x1="944" y1="436" x2="944" y2="478"/>
             <line x1="962" y1="436" x2="962" y2="478"/>
@@ -230,31 +230,31 @@ const CORE = `<style>
 
         <g id="p-cw">
           <path d="M1056 432 h30 a26 26 0 0 1 26 26 v92 a16 16 0 0 1 -16 16 h-40 z"
-                fill="url(#yBody)" stroke="#4d422d" stroke-width="3"/>
-          <line x1="1062" y1="458" x2="1108" y2="458" stroke="#574b33" stroke-width="3"/>
-          <line x1="1062" y1="480" x2="1112" y2="480" stroke="#574b33" stroke-width="3"/>
-          <circle cx="1088" cy="512" r="7" fill="#574b33" opacity=".7"/>
+                fill="url(#yBody)" stroke="#403e3a" stroke-width="3"/>
+          <line x1="1062" y1="458" x2="1108" y2="458" stroke="#484642" stroke-width="3"/>
+          <line x1="1062" y1="480" x2="1112" y2="480" stroke="#484642" stroke-width="3"/>
+          <circle cx="1088" cy="512" r="7" fill="#484642" opacity=".7"/>
         </g>
 
         <g id="p-cab">
           <path d="M746 494 v-118 a30 30 0 0 1 30 -30 h74 a18 18 0 0 1 18 18 v130 z"
-                fill="url(#yBody2)" stroke="#4d422d" stroke-width="3"/>
+                fill="url(#yBody2)" stroke="#403e3a" stroke-width="3"/>
           <path d="M756 486 v-108 a22 22 0 0 1 22 -22 h44 v130 z" fill="url(#glassG)" stroke="#322f2b" stroke-width="3"/>
           <line x1="800" y1="356" x2="800" y2="484" stroke="#322f2b" stroke-width="3.4"/>
           <line x1="757" y1="418" x2="822" y2="418" stroke="#322f2b" stroke-width="2.6" opacity=".8"/>
           <rect x="832" y="368" width="26" height="56" rx="5" fill="url(#glassG)" stroke="#322f2b" stroke-width="3"/>
-          <rect x="748" y="344" width="118" height="8" rx="4" fill="#574b33" opacity=".8"/>
+          <rect x="748" y="344" width="118" height="8" rx="4" fill="#484642" opacity=".8"/>
           <rect x="838" y="332" width="14" height="12" rx="3" fill="#393631"/>
           <line x1="762" y1="426" x2="786" y2="398" stroke="#322f2b" stroke-width="2.6"/>
           <line x1="746" y1="380" x2="734" y2="372" stroke="#e0dfdc" stroke-width="3"/>
           <rect x="726" y="362" width="10" height="14" rx="2.5" fill="#393631" stroke="#e0dfdc" stroke-width="1.4"/>
-          <line x1="746" y1="494" x2="868" y2="494" stroke="#4d422d" stroke-width="3"/>
+          <line x1="746" y1="494" x2="868" y2="494" stroke="#403e3a" stroke-width="3"/>
         </g>
 
         <g id="p-boom">
           <path d="M716 512 C 606 448 466 336 356 232 L 306 168 L 354 128 C 464 220 606 348 700 446 Z"
-                fill="url(#yBoom)" stroke="#4d422d" stroke-width="4" stroke-linejoin="round"/>
-          <path d="M676 468 C 588 396 478 310 384 224" stroke="#62553a" stroke-width="6" fill="none" opacity=".55"/>
+                fill="url(#yBoom)" stroke="#403e3a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M676 468 C 588 396 478 310 384 224" stroke="#524f4a" stroke-width="6" fill="none" opacity=".55"/>
           <path d="M700 490 C 610 430 490 336 380 240" stroke="#e5cfa4" stroke-width="3" fill="none" opacity=".5"/>
           <circle cx="700" cy="492" r="19" fill="#393631" stroke="#181715" stroke-width="3.4"/>
           <circle cx="700" cy="492" r="8" fill="#8c857a"/>
@@ -276,8 +276,8 @@ const CORE = `<style>
 
         <g id="p-arm">
           <path d="M366 142 L 390 168 L 230 470 L 192 492 L 168 468 L 330 156 Z"
-                fill="url(#yBody2)" stroke="#4d422d" stroke-width="4" stroke-linejoin="round"/>
-          <path d="M356 176 L 214 452" stroke="#62553a" stroke-width="5" opacity=".55"/>
+                fill="url(#yBody2)" stroke="#403e3a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M356 176 L 214 452" stroke="#524f4a" stroke-width="5" opacity=".55"/>
           <path d="M338 168 L 198 442" stroke="#e5cfa4" stroke-width="2.6" opacity=".5"/>
           <circle cx="192" cy="470" r="13" fill="#393631" stroke="#181715" stroke-width="3.4"/>
           <circle cx="192" cy="470" r="5.5" fill="#8c857a"/>
@@ -303,35 +303,35 @@ const CORE = `<style>
         <g id="p-bucket">
           <!-- sharp bucket, 3 forks on the right lip (side profile) -->
           <path d="M216 460 L182 512 L176 566 L188 620 L228 652 L328 652 L366 626 L372 600 L352 578 L300 552 L262 508 L242 458 Z"
-                fill="url(#yBody)" stroke="#4d422d" stroke-width="4" stroke-linejoin="miter"/>
-          <path d="M242 458 L262 508 L300 552 L352 578 L368 596 C336 584 300 562 274 530 C252 502 240 476 232 456 Z" fill="#433a28" opacity=".5"/>
+                fill="url(#yBody)" stroke="#403e3a" stroke-width="4" stroke-linejoin="miter"/>
+          <path d="M242 458 L262 508 L300 552 L352 578 L368 596 C336 584 300 562 274 530 C252 502 240 476 232 456 Z" fill="#383633" opacity=".5"/>
           <path d="M220 468 L188 514 L182 566" fill="none" stroke="#e5cfa4" stroke-width="3" opacity=".45"/>
-          <path d="M186 566 L196 616 L228 646" fill="none" stroke="#3a3222" stroke-width="5" opacity=".5"/>
+          <path d="M186 566 L196 616 L228 646" fill="none" stroke="#302e2c" stroke-width="5" opacity=".5"/>
           <!-- cutting edge along the right lip -->
-          <path d="M328 652 L372 600 L384 610 L340 662 Z" fill="#796847" stroke="#4d422d" stroke-width="2.4" stroke-linejoin="miter"/>
+          <path d="M328 652 L372 600 L384 610 L340 662 Z" fill="#65615b" stroke="#403e3a" stroke-width="2.4" stroke-linejoin="miter"/>
           <!-- 3 forks, tightly aligned along the lip (side-profile: nearly single row, slight stagger), pointing right -->
           <g stroke-linejoin="miter">
           <!-- fork 1 (lower) -->
-          <path d="M340 646 L347 632 L361 639 L355 653 Z" fill="#796847" stroke="#4d422d" stroke-width="2"/>
+          <path d="M340 646 L347 632 L361 639 L355 653 Z" fill="#65615b" stroke="#403e3a" stroke-width="2"/>
           <path d="M361 639 L355 653 L392 656 L390 636 Z" fill="url(#chrome)" stroke="#46433d" stroke-width="2.2"/>
           <!-- fork 2 (middle) -->
-          <path d="M352 626 L359 612 L373 619 L367 633 Z" fill="#796847" stroke="#4d422d" stroke-width="2"/>
+          <path d="M352 626 L359 612 L373 619 L367 633 Z" fill="#65615b" stroke="#403e3a" stroke-width="2"/>
           <path d="M373 619 L367 633 L404 636 L402 616 Z" fill="url(#chrome)" stroke="#46433d" stroke-width="2.2"/>
           <!-- fork 3 (upper) -->
-          <path d="M364 606 L371 592 L385 599 L379 613 Z" fill="#796847" stroke="#4d422d" stroke-width="2"/>
+          <path d="M364 606 L371 592 L385 599 L379 613 Z" fill="#65615b" stroke="#403e3a" stroke-width="2"/>
           <path d="M385 599 L379 613 L416 616 L414 596 Z" fill="url(#chrome)" stroke="#46433d" stroke-width="2.2"/>
           </g>
-          <path d="M240 444 C236 428 214 424 204 436 L184 460 L196 484 L242 466 Z" fill="url(#yBody2)" stroke="#4d422d" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M240 444 C236 428 214 424 204 436 L184 460 L196 484 L242 466 Z" fill="url(#yBody2)" stroke="#403e3a" stroke-width="3" stroke-linejoin="round"/>
           <circle cx="224" cy="454" r="10" fill="#393631" stroke="#181715" stroke-width="3"/><circle cx="224" cy="454" r="4" fill="#a6a199"/>
           <circle cx="198" cy="468" r="8" fill="#393631" stroke="#181715" stroke-width="3"/><circle cx="198" cy="468" r="3" fill="#a6a199"/>
         </g>
 
         <g id="p-hw1">
-          <circle cx="330" cy="180" r="23" fill="none" stroke="#8c7953" stroke-width="8.5"/>
+          <circle cx="330" cy="180" r="23" fill="none" stroke="#75706a" stroke-width="8.5"/>
           <path d="M312 166 a23 23 0 0 1 30 -6" fill="none" stroke="#e5cfa4" stroke-width="3"/>
         </g>
         <g id="p-hw2">
-          <circle cx="192" cy="470" r="17" fill="none" stroke="#8c7953" stroke-width="7"/>
+          <circle cx="192" cy="470" r="17" fill="none" stroke="#75706a" stroke-width="7"/>
           <path d="M180 460 a17 17 0 0 1 22 -4" fill="none" stroke="#e5cfa4" stroke-width="2.6"/>
         </g>
         <g id="p-hw3">
@@ -347,7 +347,7 @@ const CORE = `<style>
                 fill="none" stroke="#4d4943" stroke-width="3" stroke-linecap="round"/>
         </g>
         <g id="p-hw7">
-          <circle cx="700" cy="492" r="27" fill="none" stroke="#8c7953" stroke-width="8.5"/>
+          <circle cx="700" cy="492" r="27" fill="none" stroke="#75706a" stroke-width="8.5"/>
           <path d="M680 476 a27 27 0 0 1 34 -7" fill="none" stroke="#e5cfa4" stroke-width="3"/>
         </g>
         <g id="p-hw8"><rect x="246" y="322" width="28" height="12" rx="6" fill="url(#chrome)" stroke="#5e5a52" stroke-width="2"/></g>
