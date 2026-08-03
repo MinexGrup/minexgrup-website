@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import PageHero from "../components/PageHero";
 import CatalogClient from "./CatalogClient";
 import { getCatalogParts } from "../lib/airtable";
 
@@ -12,12 +11,7 @@ export default async function CatalogPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Parts Catalog"
-        title="Find the exact part"
-        intro="Search our catalog by part number, machine make, or keyword — then add what you need straight to a quote request."
-      />
-      <section className="section pb-28">
+      <section className="section pt-28 pb-28">
         <CatalogClient parts={parts} />
       </section>
     </>
