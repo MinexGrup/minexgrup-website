@@ -55,7 +55,7 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
           <input
             value={q}
             onChange={(e) => { setQ(e.target.value); reset(); }}
-            placeholder="Search 7,000+ parts by number, make, or keyword…"
+            placeholder="Search 10,000+ parts by number, make, or keyword…"
             className="w-full bg-transparent text-sm text-champagne placeholder:text-champagne/35 focus:outline-none"
           />
           <button type="submit" className="btn-gold whitespace-nowrap px-5 py-2 text-sm">Search</button>

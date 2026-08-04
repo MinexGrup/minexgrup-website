@@ -12,7 +12,7 @@ export default function CatalogTeaser() {
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow justify-center">Parts Catalog</p>
             <h2 className="mt-5 font-display text-4xl font-bold uppercase leading-tight tracking-tightest text-champagne md:text-6xl">
-              7,000+ parts.<br />Search by number, model, or machine.
+              10,000+ parts.<br />Search by number, model, or machine.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-champagne/70">
               Find the exact part number, engine, or undercarriage component you need —

@@ -142,7 +142,7 @@ export const productCategories: ProductCategory[] = [
       "Match by part number or machine",
       "Engine, hydraulic & wear parts",
       "Multiple supplier options per part",
-      "7,000+ parts across our catalog"
+      "10,000+ parts across our catalog"
     ],
     supplies: [
       "Engine parts (injectors, pumps, heads)",
@@ -272,8 +272,8 @@ export const valueProps = [
 ] as const;
 
 export const stats = [
-  { value: "3", label: "Continents in our supply network" },
-  { value: "7,000+", label: "Parts across our catalog" },
-  { value: "3", label: "Core brands, more coming" },
+  { value: "6", label: "Continents we reach" },
+  { value: "10,000+", label: "Parts across our catalog" },
+  { value: "8", label: "Brands we source" },
   { value: "1", label: "Contact from request to delivery" }
 ] as const;
