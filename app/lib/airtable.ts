@@ -77,13 +77,17 @@ export async function getCatalogParts(): Promise<Part[]> {
       url.searchParams.set("returnFieldsByFieldId", "true");
       for (const f of Object.values(F)) url.searchParams.append("fields[]", f);
       if (offset) url.searchParams.set("offset", offset);
-      const res = await fetch(url.toString(), {
-        headers: { Authorization: `Bearer ${key}` },
-        cache: "force-cache"
-      });
-      if (!res.ok) {
-        console.error("CATALOG: Airtable responded", res.status, (await res.text()).slice(0, 300));
-        break;
+      let res: Response | undefined;
+      let ok = false;
+      for (let attempt = 0; attempt < 5; attempt++) {
+        res = await fetch(url.toString(), { headers: { Authorization: `Bearer ${key}` }, cache: "force-cache" });
+        if (res.ok) { ok = true; break; }
+        if (res.status === 429 || res.status >= 500) { await new Promise((r) => setTimeout(r, 1000 * (attempt + 1))); continue; }
+        break; // non-retryable (e.g. 401/403)
+      }
+      if (!ok || !res) {
+        console.error("CATALOG: Airtable responded", res ? res.status : "no-response", "— keeping", all.length, "rows fetched so far");
+        break; // keep whatever we already have instead of failing to empty
       }
       const json = (await res.json()) as { records: RawRecord[]; offset?: string };
       all.push(...json.records);
