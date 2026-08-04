@@ -14,8 +14,7 @@ export default function CTASection() {
                 Send us a part number.<br />We&apos;ll handle the rest.
               </h2>
               <p className="mt-5 max-w-xl text-champagne/70">
-                Machine, engine, or part — one request, multiple supplier options, a
-                transparent offer, and one contact from request to delivery.
+                One request. Multiple supplier options. One contact, from quote to delivery.
               </p>
             </div>
             <div className="flex shrink-0 flex-col gap-4">

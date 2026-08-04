@@ -20,14 +20,9 @@ export default function IndustriesPreview() {
                 href={`/industries#${ind.slug}`}
                 className="card group flex h-full flex-col justify-between p-8"
               >
-                <div>
-                  <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-gold">
-                    {ind.name}
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-champagne/60">
-                    {ind.conditions}
-                  </p>
-                </div>
+                <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-gold">
+                  {ind.name}
+                </h3>
                 <p className="mt-6 border-t border-white/[0.06] pt-5 text-sm leading-relaxed text-champagne/75">
                   {ind.supply}
                 </p>
