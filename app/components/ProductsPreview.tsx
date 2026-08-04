@@ -32,7 +32,6 @@ export default function ProductsPreview() {
               <h3 className="mt-4 font-display text-2xl font-semibold uppercase tracking-tight text-champagne">
                 {cat.name}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-champagne/60">{cat.blurb}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {cat.examples.slice(0, 4).map((ex) => (
                   <span

@@ -52,10 +52,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            We source and deliver mining and construction equipment, engines,
-            undercarriage systems, and spare parts — matched to spec and delivered
-            reliably through a trusted global network.{" "}
-            <span className="text-champagne">We sell solutions, not just parts.</span>
+            Machines, engines, undercarriage and spare parts — sourced to spec,
+            delivered worldwide.
           </motion.p>
 
           <motion.div

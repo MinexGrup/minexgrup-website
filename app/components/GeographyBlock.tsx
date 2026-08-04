@@ -11,11 +11,6 @@ export default function GeographyBlock() {
           <h2 className="mt-5 font-display text-4xl font-bold uppercase leading-tight tracking-tightest text-champagne md:text-5xl">
             One network,<br />across the globe
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-champagne/70">
-            Head base in Türkiye for logistics and coordination, manufacturing and large
-            stock in China, and OEM suppliers in Europe — with sourcing and projects
-            reaching the USA, Africa, Australia, Chile and Singapore, and Azerbaijan as a core served market.
-          </p>
         </div>
       </Reveal>
 
