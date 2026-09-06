@@ -4,7 +4,6 @@ import ProductsPreview from "./components/ProductsPreview";
 import IndustriesPreview from "./components/IndustriesPreview";
 import GeographyBlock from "./components/GeographyBlock";
 import CatalogTeaser from "./components/CatalogTeaser";
-import CTASection from "./components/CTASection";
 
 export default function HomePage() {
   return (
@@ -15,7 +14,6 @@ export default function HomePage() {
       <IndustriesPreview />
       <GeographyBlock />
       <CatalogTeaser />
-      <CTASection />
     </>
   );
 }

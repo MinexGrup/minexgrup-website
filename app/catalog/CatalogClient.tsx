@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { type Part, partMakes, formatNumber } from "../lib/parts";
+import { type Part, partMakes } from "../lib/parts";
 
 const ExcavatorAssembly = dynamic(() => import("../components/ExcavatorAssembly"), { ssr: false });
 
@@ -12,7 +12,6 @@ const PAGE = 25;
 export default function CatalogClient({ parts }: { parts: Part[] }) {
   const [q, setQ] = useState("");
   const [make, setMake] = useState("");
-  const [sort, setSort] = useState<"relevance" | "price-asc" | "price-desc">("relevance");
   const [limit, setLimit] = useState(PAGE);
   const resultsRef = useRef<HTMLDivElement>(null);
   const jump = () => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -23,14 +22,11 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
   }, [parts]);
 
   const results = useMemo(() => {
-    let rows = parts.filter((p) => {
+    return parts.filter((p) => {
       const hay = `${p.partNumber} ${p.name} ${p.make}`.toLowerCase();
       return (!q || hay.includes(q.toLowerCase())) && (!make || p.make === make);
     });
-    if (sort === "price-asc") rows = [...rows].sort((a, b) => (a.price ?? 1e15) - (b.price ?? 1e15));
-    if (sort === "price-desc") rows = [...rows].sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
-    return rows;
-  }, [parts, q, make, sort]);
+  }, [parts, q, make]);
 
   const shown = results.slice(0, limit);
   const reset = () => setLimit(PAGE);
@@ -65,15 +61,10 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
             <option value="">All makes</option>
             {makes.map((m) => (<option key={m} value={m}>{m}</option>))}
           </select>
-          <select value={sort} onChange={(e) => setSort(e.target.value as typeof sort)} className={`${selectCls} ml-auto`}>
-            <option value="relevance">Sort: Relevance</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
         </div>
       </form>
 
-      {/* scroll-assembly excavator (full-bleed, lazy, isolated) */}
+      {/* scroll-assembly excavator (lazy, isolated) */}
       <div className="my-8">
         <ExcavatorAssembly />
       </div>
@@ -110,8 +101,6 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
                 <th className="px-5 py-4 font-medium">Part number</th>
                 <th className="px-5 py-4 font-medium">Description</th>
                 <th className="px-5 py-4 font-medium">Make</th>
-                <th className="px-5 py-4 font-medium">Price</th>
-                <th className="px-5 py-4 font-medium">Currency</th>
                 <th className="px-5 py-4"></th>
               </tr>
             </thead>
@@ -121,8 +110,6 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
                   <td className="px-5 py-4 font-mono text-champagne">{p.partNumber}</td>
                   <td className="px-5 py-4 text-champagne/75">{p.name}</td>
                   <td className="px-5 py-4"><span className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-champagne/70">{p.make}</span></td>
-                  <td className="px-5 py-4 text-champagne whitespace-nowrap tabular-nums">{p.price !== null ? formatNumber(p.price) : <span className="text-gold">On request</span>}</td>
-                  <td className="px-5 py-4">{p.price !== null ? <span className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-champagne/70">{p.currency}</span> : <span className="text-champagne/30">—</span>}</td>
                   <td className="px-5 py-4 text-right">
                     <Link href="/contact" className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-gold hover:text-gold-bright">Get Quote →</Link>
                   </td>
@@ -140,8 +127,7 @@ export default function CatalogClient({ parts }: { parts: Part[] }) {
                 <span className="rounded-full border border-white/10 px-2 py-0.5 text-xs text-champagne/70">{p.make}</span>
               </div>
               <p className="mt-2 text-sm text-champagne/75">{p.name}</p>
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-sm text-champagne tabular-nums">{p.price !== null ? <>{formatNumber(p.price)} <span className="text-champagne/50">{p.currency}</span></> : <span className="text-gold">On request</span>}</span>
+              <div className="mt-3 flex justify-end">
                 <Link href="/contact" className="text-xs font-semibold uppercase tracking-wider text-gold">Get Quote →</Link>
               </div>
             </div>
