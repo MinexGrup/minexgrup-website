@@ -31,3 +31,8 @@ next-env.d.ts
 /PREVIEW-*.html
 # internal setup notes (personal, not code)
 /SETUP-CHECKLIST.md
+
+# Local scratch / preview files (not part of the deployed site)
+/*.html
+/*.glb
+model.glb*
