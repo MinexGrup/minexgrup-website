@@ -2,18 +2,15 @@ import type { Part } from "./parts";
 
 // Loads the public Parts Catalog from Airtable ("История цен").
 // Fetches all rows, de-dupes by part number (keeps most recent), parses a clean
-// description from the comment, detects make, and computes public price = cost × 1.08.
+// description from the comment and detects the make. Prices are intentionally not exposed.
 // The raw supplier cost is used only here (server side) and never returned.
 
 const BASE_ID = process.env.AIRTABLE_BASE_ID || "appTdwmhpK8DH8z4H";
 const TABLE_ID = process.env.AIRTABLE_TABLE_ID || "tbl5l7F9Xq9txhojr";
-const MARKUP = 1.08;
 
 const F = {
   part: "fld6tqSILqUg4GQZy",
-  price: "fldCtkyECU8PEc9jG",
   comment: "fld8b66YICom14wqC",
-  currency: "fldaSKZ8LWvKsSboZ",
   date: "fldA1PDNZeodioPXG"
 };
 
@@ -119,15 +116,8 @@ export async function getCatalogParts(): Promise<Part[]> {
   for (const r of byKey.values()) {
     const pn = String(r.fields[F.part]).trim();
     const comment = String(r.fields[F.comment] || "");
-    const rawPrice = r.fields[F.price] as number | undefined;
-    // Airtable REST returns singleSelect as a plain string; the MCP/JSON form
-    // returns { name }. Handle both so CNY rows aren't mislabelled as USD.
-    const curRaw = r.fields[F.currency] as unknown;
-    const currency =
-      (typeof curRaw === "string" ? curRaw : (curRaw as { name?: string } | undefined)?.name) || "USD";
     const name = parseName(comment, pn) || pn;
-    const price = typeof rawPrice === "number" && rawPrice > 0 ? Math.round(rawPrice * MARKUP * 100) / 100 : null;
-    parts.push({ id: r.id, partNumber: pn, name, make: detectMake(comment, pn), price, currency });
+    parts.push({ id: r.id, partNumber: pn, name, make: detectMake(comment, pn) });
   }
 
   parts.sort((a, b) => a.make.localeCompare(b.make) || a.partNumber.localeCompare(b.partNumber));
