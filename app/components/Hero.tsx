@@ -62,11 +62,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
           >
-            <Link href="/contact" className="btn-gold">
-              Request a Quote
-            </Link>
-            <Link href="/products" className="btn-ghost">
-              Explore Products
+            <Link href="/products" className="btn-gold">
+              Explore Products <span aria-hidden>→</span>
             </Link>
           </motion.div>
         </div>

@@ -142,3 +142,109 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .logo-sheen__glint { animation: none; opacity: 0; }
 }
+
+/* ===================================================================
+   Homepage: "What we do" (replaces the full product grid on home)
+   =================================================================== */
+.wwd { padding: 104px 0 76px; }
+@media (max-width: 767px) { .wwd { padding: 76px 0 56px; } }
+.wwd-top { display: grid; gap: 22px; align-items: end; }
+@media (min-width: 960px) { .wwd-top { grid-template-columns: 1.1fr 1fr; gap: 80px; } }
+.wwd-cats { margin-top: 54px; display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 1040px) { .wwd-cats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.wwd-cat {
+  position: relative; display: flex; flex-direction: column; gap: 10px; padding: 24px 24px 26px;
+  border-radius: 18px; border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(23,23,27,.9), rgba(17,17,20,.6));
+  transition: border-color .35s, transform .45s cubic-bezier(.22,1,.36,1);
+}
+.wwd-cat:hover { border-color: rgba(201,162,75,.5); transform: translateY(-3px); }
+.wwd-n { font-family: var(--font-display); font-size: 13px; letter-spacing: .2em; color: #c9a24b; }
+.wwd-nm { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.1; text-transform: uppercase; letter-spacing: .01em; color: #f3ecdd; white-space: nowrap; }
+.wwd-ds { font-size: 13.5px; line-height: 1.5; color: #8f897d; padding-right: 26px; }
+.wwd-ar {
+  position: absolute; right: 22px; top: 22px; width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.14); display: grid; place-items: center; color: #cfc6b4; font-size: 15px;
+  transition: all .35s cubic-bezier(.22,1,.36,1);
+}
+.wwd-cat:hover .wwd-ar { background: #c9a24b; border-color: #c9a24b; color: #0b0b0d; transform: rotate(-45deg); }
+@media (max-width: 639px) {
+  .wwd-cats { margin-top: 34px; gap: 10px; }
+  .wwd-cat { padding: 16px 14px 18px; gap: 6px; }
+  .wwd-nm { font-size: 15.5px; white-space: normal; }
+  .wwd-ds { display: none; }
+  .wwd-ar { width: 26px; height: 26px; right: 12px; top: 12px; font-size: 12px; }
+}
+
+/* ===================================================================
+   Homepage: interactive 3D world
+   =================================================================== */
+.w3d { padding: 76px 0 110px; border-top: 1px solid rgba(255,255,255,.06); }
+@media (max-width: 767px) { .w3d { padding: 56px 0 80px; } }
+.w3d-box { position: relative; margin-top: 36px; }
+.w3d-stage {
+  position: relative; height: clamp(540px, 54vw, 720px); border-radius: 24px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: radial-gradient(60% 60% at 50% 55%, rgba(120,124,130,.13), transparent 70%), linear-gradient(180deg, #111215, #0b0b0d);
+}
+@media (max-width: 899px) { .w3d-stage { height: 440px; border-radius: 20px; } }
+.w3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; cursor: grab; opacity: 0; transition: opacity 1.2s cubic-bezier(.22,1,.36,1); }
+.w3d-canvas.is-ready { opacity: 1; }
+.w3d-canvas:active { cursor: grabbing; }
+.w3d-poster { position: absolute; left: 50%; top: 50%; width: min(94%, 1200px); transform: translate(-50%, -50%); pointer-events: none; transition: opacity 1s; }
+.w3d-poster.is-hidden { opacity: 0; }
+@media (max-width: 899px) { .w3d-poster { width: 128%; } }
+.w3d-tap {
+  position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 4; display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(201,162,75,.5); background: rgba(11,11,13,.7); backdrop-filter: blur(8px);
+  font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #e6c77e; white-space: nowrap;
+}
+.w3d-tap .dot { width: 8px; height: 8px; border-radius: 50%; background: #c9a24b; animation: w3dPulse 1.6s ease-out infinite; }
+@keyframes w3dPulse { 0% { box-shadow: 0 0 0 0 rgba(201,162,75,.6); } 100% { box-shadow: 0 0 0 10px rgba(201,162,75,0); } }
+.w3d-hint { position: absolute; left: 24px; top: 22px; z-index: 3; display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8f897d; pointer-events: none; }
+.w3d-hint .ring { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(201,162,75,.4); display: grid; place-items: center; }
+.w3d-hint .ring::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #c9a24b; animation: w3dOrbit 2.4s ease-in-out infinite; }
+@keyframes w3dOrbit { 0%, 100% { transform: translateX(-5px); } 50% { transform: translateX(5px); } }
+.w3d-zones { position: absolute; left: 24px; bottom: 24px; z-index: 3; display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 899px) { .w3d-zones { position: static; margin-top: 14px; } }
+.w3d-zone {
+  display: flex; align-items: center; gap: 9px; padding: 9px 15px; border-radius: 999px; border: 1px solid rgba(255,255,255,.08);
+  background: rgba(17,17,20,.6); backdrop-filter: blur(8px); font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: #cfc6b4; transition: all .3s; cursor: pointer;
+}
+.w3d-zone i { width: 7px; height: 7px; border-radius: 50%; background: #c9a24b; box-shadow: 0 0 0 3px rgba(201,162,75,.2); }
+.w3d-zone:hover { border-color: rgba(201,162,75,.5); color: #f3ecdd; }
+.w3d-zone.on { background: #c9a24b; border-color: #c9a24b; color: #0b0b0d; }
+.w3d-zone.on i { background: #0b0b0d; box-shadow: none; }
+.w3d-card {
+  position: absolute; z-index: 4; right: 24px; bottom: 24px; width: 330px; padding: 24px 24px 22px; border-radius: 18px;
+  border: 1px solid rgba(201,162,75,.35); background: rgba(13,13,15,.82); backdrop-filter: blur(14px);
+  opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
+}
+.w3d-card.show { opacity: 1; transform: none; pointer-events: auto; }
+.w3d-card .k { font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; color: #c9a24b; }
+.w3d-card h3 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 30px; line-height: 1; margin-top: 8px; color: #f3ecdd; }
+.w3d-card ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 9px; }
+.w3d-card li { display: flex; gap: 10px; font-size: 14px; color: #cfc6b4; line-height: 1.45; }
+.w3d-card li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 7px; border-radius: 50%; background: #c9a24b; }
+@media (max-width: 899px) {
+  .w3d-card { position: relative; right: auto; bottom: auto; width: auto; margin-top: 14px; padding: 16px 16px 14px; transform: none; }
+  .w3d-card:not(.show) { display: none; }
+  .w3d-card h3 { font-size: 22px; margin-top: 4px; }
+  .w3d-card ul { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .w3d-card li { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); }
+  .w3d-card li::before { display: none; }
+}
+
+/* ===================================================================
+   Floating WhatsApp button
+   =================================================================== */
+.wa-fab {
+  position: fixed; right: 22px; bottom: 22px; z-index: 60; display: flex; align-items: center; height: 58px; padding: 0 17px;
+  border-radius: 999px; background: #25d366; color: #fff; overflow: hidden;
+  box-shadow: 0 12px 34px -10px rgba(37,211,102,.55), 0 2px 8px rgba(0,0,0,.35); transition: all .35s cubic-bezier(.22,1,.36,1);
+}
+.wa-fab svg { width: 25px; height: 25px; flex: none; }
+.wa-fab span { max-width: 0; opacity: 0; white-space: nowrap; font-size: 14px; font-weight: 600; transition: all .35s cubic-bezier(.22,1,.36,1); }
+.wa-fab:hover { transform: translateY(-2px); }
+.wa-fab:hover span { max-width: 220px; opacity: 1; margin-left: 10px; }

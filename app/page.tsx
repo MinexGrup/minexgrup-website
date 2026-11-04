@@ -1,18 +1,18 @@
 import Hero from "./components/Hero";
-import TrustStrip from "./components/TrustStrip";
-import ProductsPreview from "./components/ProductsPreview";
-import IndustriesPreview from "./components/IndustriesPreview";
+import WhatWeDo from "./components/WhatWeDo";
+import World3D from "./components/World3D";
 import GeographyBlock from "./components/GeographyBlock";
+import IndustriesPreview from "./components/IndustriesPreview";
 import CatalogTeaser from "./components/CatalogTeaser";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustStrip />
-      <ProductsPreview />
-      <IndustriesPreview />
+      <WhatWeDo />
+      <World3D />
       <GeographyBlock />
+      <IndustriesPreview />
       <CatalogTeaser />
     </>
   );

@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "./lib/site";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const display = Oswald({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
